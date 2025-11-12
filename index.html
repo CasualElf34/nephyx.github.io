@@ -16,6 +16,13 @@
             overflow: hidden;
             height: 100vh;
             width: 100vw;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            height: 100%;
+            width: 100%;
         }
 
         .gradient-bg {
@@ -135,11 +142,11 @@
             padding: 25px 40px;
             border: 3px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-            animation: slideInLeft 1s ease-out backwards;
+            animation: slideInLeft 1s ease-out backwards, float 4s ease-in-out infinite;
         }
 
-        .info-tag:nth-child(1) { animation-delay: 0.2s; }
-        .info-tag:nth-child(2) { animation-delay: 0.4s; }
+        .info-tag:nth-child(1) { animation-delay: 0.2s, 0s; }
+        .info-tag:nth-child(2) { animation-delay: 0.4s, 0.5s; }
 
         @keyframes slideInLeft {
             from {
@@ -171,12 +178,7 @@
             padding: 30px;
             border-radius: 30px;
             box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
-            animation: float 4s ease-in-out infinite, appear 1s ease-out 0.6s backwards;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-15px) rotate(2deg); }
+            animation: appear 1s ease-out 0.6s backwards;
         }
 
         @keyframes appear {
@@ -193,7 +195,8 @@
         .qr-code {
             width: 280px;
             height: 280px;
-            background: #000;
+            display: block;
+            border-radius: 10px;
         }
 
         .instagram-label {
@@ -216,12 +219,11 @@
             padding: 25px 40px;
             border: 3px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-            animation: slideInRight 1s ease-out backwards;
+            animation: slideInRight 1s ease-out backwards, float 4s ease-in-out infinite;
         }
 
-        .info-tag-right:nth-child(1) { animation-delay: 0.3s; }
-        .info-tag-right:nth-child(2) { animation-delay: 0.5s; }
-        .info-tag-right:nth-child(3) { animation-delay: 0.7s; }
+        .info-tag-right:nth-child(1) { animation-delay: 0.3s, 0.2s; }
+        .info-tag-right:nth-child(2) { animation-delay: 0.5s, 0.7s; }
 
         @keyframes slideInRight {
             from {
@@ -232,6 +234,11 @@
                 opacity: 1;
                 transform: translateX(0);
             }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
         }
 
         .info-tag-right h2 {
@@ -307,32 +314,8 @@
 
             <div class="center-section">
                 <div class="qr-container">
-                    <svg class="qr-code" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                        <!-- QR Code simplifié -->
-                        <rect width="100" height="100" fill="#000"/>
-                        <rect x="5" y="5" width="25" height="25" fill="#fff"/>
-                        <rect x="70" y="5" width="25" height="25" fill="#fff"/>
-                        <rect x="5" y="70" width="25" height="25" fill="#fff"/>
-                        <rect x="10" y="10" width="15" height="15" fill="#000"/>
-                        <rect x="75" y="10" width="15" height="15" fill="#000"/>
-                        <rect x="10" y="75" width="15" height="15" fill="#000"/>
-                        <rect x="13" y="13" width="9" height="9" fill="#fff"/>
-                        <rect x="78" y="13" width="9" height="9" fill="#fff"/>
-                        <rect x="13" y="78" width="9" height="9" fill="#fff"/>
-                        
-                        <!-- Patterns -->
-                        <rect x="40" y="10" width="5" height="5" fill="#fff"/>
-                        <rect x="50" y="10" width="5" height="5" fill="#fff"/>
-                        <rect x="40" y="20" width="5" height="5" fill="#fff"/>
-                        <rect x="60" y="20" width="5" height="5" fill="#fff"/>
-                        <rect x="40" y="40" width="20" height="20" fill="#fff"/>
-                        <rect x="45" y="45" width="10" height="10" fill="#000"/>
-                        <rect x="70" y="40" width="5" height="5" fill="#fff"/>
-                        <rect x="80" y="40" width="5" height="5" fill="#fff"/>
-                        <rect x="40" y="70" width="5" height="5" fill="#fff"/>
-                        <rect x="50" y="80" width="5" height="5" fill="#fff"/>
-                        <rect x="70" y="70" width="15" height="15" fill="#fff"/>
-                    </svg>
+                    <!-- Remplace "METTRE-TON-QR-CODE-ICI.png" par le nom de ton fichier QR code -->
+                    <img src="qr-code.png" alt="QR Code Instagram" class="qr-code" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22280%22 height=%22280%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23000%22/%3E%3Crect x=%225%22 y=%225%22 width=%2225%22 height=%2225%22 fill=%22%23fff%22/%3E%3Crect x=%2270%22 y=%225%22 width=%2225%22 height=%2225%22 fill=%22%23fff%22/%3E%3Crect x=%225%22 y=%2270%22 width=%2225%22 height=%2225%22 fill=%22%23fff%22/%3E%3Crect x=%2210%22 y=%2210%22 width=%2215%22 height=%2215%22 fill=%22%23000%22/%3E%3Crect x=%2275%22 y=%2210%22 width=%2215%22 height=%2215%22 fill=%22%23000%22/%3E%3Crect x=%2210%22 y=%2275%22 width=%2215%22 height=%2215%22 fill=%22%23000%22/%3E%3Crect x=%2213%22 y=%2213%22 width=%229%22 height=%229%22 fill=%22%23fff%22/%3E%3Crect x=%2278%22 y=%2213%22 width=%229%22 height=%229%22 fill=%22%23fff%22/%3E%3Crect x=%2213%22 y=%2278%22 width=%229%22 height=%229%22 fill=%22%23fff%22/%3E%3Crect x=%2240%22 y=%2210%22 width=%225%22 height=%225%22 fill=%22%23fff%22/%3E%3Crect x=%2250%22 y=%2210%22 width=%225%22 height=%225%22 fill=%22%23fff%22/%3E%3Crect x=%2240%22 y=%2220%22 width=%225%22 height=%225%22 fill=%22%23fff%22/%3E%3Crect x=%2260%22 y=%2220%22 width=%225%22 height=%225%22 fill=%22%23fff%22/%3E%3Crect x=%2240%22 y=%2240%22 width=%2220%22 height=%2220%22 fill=%22%23fff%22/%3E%3Crect x=%2245%22 y=%2245%22 width=%2210%22 height=%2210%22 fill=%22%23000%22/%3E%3Crect x=%2270%22 y=%2240%22 width=%225%22 height=%225%22 fill=%22%23fff%22/%3E%3Crect x=%2280%22 y=%2240%22 width=%225%22 height=%225%22 fill=%22%23fff%22/%3E%3Crect x=%2240%22 y=%2270%22 width=%225%22 height=%225%22 fill=%22%23fff%22/%3E%3Crect x=%2250%22 y=%2280%22 width=%225%22 height=%225%22 fill=%22%23fff%22/%3E%3Crect x=%2270%22 y=%2270%22 width=%2215%22 height=%2215%22 fill=%22%23fff%22/%3E%3C/svg%3E'">
                 </div>
                 <div class="instagram-label">INSTAGRAM</div>
             </div>
