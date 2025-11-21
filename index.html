@@ -555,7 +555,7 @@
 
             <!-- Page 2: Équipe -->
             <div class="page page2" :class="{ active: currentPage === 2 }">
-                <div class="team-question">Avec cette équipe de choque ?</div>
+                <div class="team-question">Avec cette équipe de choc ?</div>
                 <div class="team-container">
                     <div v-for="member in teamMembers" :key="member.name" class="team-member">
                         <div class="team-avatar" :style="{ '--image': `url(${member.image})` }"></div>
@@ -612,7 +612,7 @@
             data() {
                 return {
                     currentPage: 1,
-                    fullText: 'Yo, un concert\nça vous tente ?',
+                    fullText: 'Yo, un concert ça vous tente ?',
                     displayedText: '',
                     teamMembers: [
                         { name: 'Lucas', image: 'lucas.jpg' },
