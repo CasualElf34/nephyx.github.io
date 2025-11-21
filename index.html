@@ -157,8 +157,8 @@
         }
 
         .char {
-            display: inline-block;
-            animation: typeIn 0.1s ease-out forwards;
+            display: inline;
+            animation: typeIn 0.15s ease-out forwards;
             opacity: 0;
         }
 
@@ -554,7 +554,6 @@
             <div class="page" :class="{ active: currentPage === 1 }">
                 <div class="page1">
                     <div class="animated-text">
-                        TEST: {{ displayedText.length }} chars
                         <span v-for="(char, index) in displayedText" :key="index" class="char">{{ char }}</span>
                     </div>
                 </div>
