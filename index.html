@@ -548,7 +548,7 @@
             <div class="page" :class="{ active: currentPage === 1 }">
                 <div class="page1">
                     <div class="animated-text">
-                        <span v-for="(char, index) in displayedText" :key="index" :class="{ 'char': true, 'concert-word': isConcertWord(index) }">{{ char }}</span>
+                        <span v-for="(char, index) in displayedText" :key="index" :class="{ 'char': true, 'concert-word': isConcertWord(displayedText, index) }">{{ char }}</span>
                     </div>
                 </div>
             </div>
@@ -637,8 +637,9 @@
                 handleQrError() {
                     this.qrCodeSrc = 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23000%22/%3E%3Crect x=%225%22 y=%225%22 width=%2225%22 height=%2225%22 fill=%22%23fff%22/%3E%3Crect x=%2270%22 y=%225%22 width=%2225%22 height=%2225%22 fill=%22%23fff%22/%3E%3Crect x=%225%22 y=%2270%22 width=%2225%22 height=%2225%22 fill=%22%23fff%22/%3E%3Crect x=%2210%22 y=%2210%22 width=%2215%22 height=%2215%22 fill=%22%23000%22/%3E%3Crect x=%2275%22 y=%2210%22 width=%2215%22 height=%2215%22 fill=%22%23000%22/%3E%3Crect x=%2210%22 y=%2275%22 width=%2215%22 height=%2215%22 fill=%22%23000%22/%3E%3Crect x=%2213%22 y=%2213%22 width=%229%22 height=%229%22 fill=%22%23fff%22/%3E%3Crect x=%2278%22 y=%2213%22 width=%229%22 height=%229%22 fill=%22%23fff%22/%3E%3Crect x=%2213%22 y=%2278%22 width=%229%22 height=%229%22 fill=%22%23fff%22/%3E%3Crect x=%2240%22 y=%2210%22 width=%225%22 height=%225%22 fill=%22%23fff%22/%3E%3Crect x=%2250%22 y=%2210%22 width=%225%22 height=%225%22 fill=%22%23fff%22/%3E%3Crect x=%2240%22 y=%2220%22 width=%225%22 height=%225%22 fill=%22%23fff%22/%3E%3Crect x=%2260%22 y=%2220%22 width=%225%22 height=%225%22 fill=%22%23fff%22/%3E%3Crect x=%2240%22 y=%2240%22 width=%2220%22 height=%2220%22 fill=%22%23fff%22/%3E%3Crect x=%2245%22 y=%2245%22 width=%2210%22 height=%2210%22 fill=%22%23000%22/%3E%3Crect x=%2270%22 y=%2240%22 width=%225%22 height=%225%22 fill=%22%23fff%22/%3E%3Crect x=%2280%22 y=%2240%22 width=%225%22 height=%225%22 fill=%22%23fff%22/%3E%3Crect x=%2240%22 y=%2270%22 width=%225%22 height=%225%22 fill=%22%23fff%22/%3E%3Crect x=%2250%22 y=%2280%22 width=%225%22 height=%225%22 fill=%22%23fff%22/%3E%3Crect x=%2270%22 y=%2270%22 width=%2215%22 height=%2215%22 fill=%22%23fff%22/%3E%3C/svg%3E';
                 },
-                isConcertWord(index) {
-                    const concertStart = this.fullText.indexOf('concert');
+                isConcertWord(text, index) {
+                    const concertStart = text.indexOf('concert');
+                    if (concertStart === -1) return false;
                     const concertEnd = concertStart + 'concert'.length;
                     return index >= concertStart && index < concertEnd;
                 },
