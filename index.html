@@ -649,14 +649,14 @@
                             index++;
                         } else {
                             clearInterval(typeInterval);
-                            // Passe à la page 2 après 5 secondes
+                            // Passe à la page 2 après 3 secondes
                             setTimeout(() => {
                                 this.currentPage = 2;
                                 // Passe à la page 3 après 5 secondes
                                 setTimeout(() => {
                                     this.currentPage = 3;
                                 }, 5000);
-                            }, 5000);
+                            }, 3000);
                         }
                     }, 100);
                 }
