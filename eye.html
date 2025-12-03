@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEPHYX - Eye</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Arial Black', Arial, sans-serif;
+        }
+
+        .eye-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        .logo-eye {
+            width: 400px;
+            height: 280px;
+            filter: drop-shadow(0 10px 40px rgba(0, 255, 255, 0.5));
+            animation: eyePulse 3s ease-in-out infinite, eyeFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes eyePulse {
+            0%, 100% { 
+                filter: drop-shadow(0 10px 40px rgba(0, 255, 255, 0.5));
+            }
+            50% { 
+                filter: drop-shadow(0 15px 60px rgba(0, 255, 255, 0.8));
+            }
+        }
+
+        @keyframes eyeFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .logo-text {
+            font-size: 8vw;
+            font-weight: 900;
+            color: #00ff00;
+            text-shadow: 
+                5px 5px 0 #ff00ff,
+                10px 10px 20px rgba(0, 255, 255, 0.6),
+                0 0 60px rgba(0, 255, 0, 0.4);
+            letter-spacing: 0.2em;
+            animation: textGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes textGlow {
+            0%, 100% { 
+                text-shadow: 
+                    5px 5px 0 #ff00ff,
+                    10px 10px 20px rgba(0, 255, 255, 0.6),
+                    0 0 60px rgba(0, 255, 0, 0.4);
+            }
+            50% { 
+                text-shadow: 
+                    5px 5px 0 #ff00ff,
+                    10px 10px 20px rgba(0, 255, 255, 0.8),
+                    0 0 80px rgba(0, 255, 0, 0.6);
+            }
+        }
+
+        /* Effet de particules en arrière-plan */
+        @keyframes particle-float {
+            0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) translateX(50px); opacity: 0; }
+        }
+
+        .particle {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: #00ffff;
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0;
+        }
+
+        .particle:nth-child(1) { left: 20%; top: 80%; animation: particle-float 8s infinite; }
+        .particle:nth-child(2) { left: 30%; top: 70%; animation: particle-float 10s infinite 1s; }
+        .particle:nth-child(3) { left: 70%; top: 80%; animation: particle-float 12s infinite 2s; }
+        .particle:nth-child(4) { left: 80%; top: 75%; animation: particle-float 9s infinite 0.5s; }
+        .particle:nth-child(5) { left: 50%; top: 85%; animation: particle-float 11s infinite 1.5s; }
+    </style>
+</head>
+<body>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+
+    <div class="eye-container">
+        <svg class="logo-eye" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="100" cy="60" rx="90" ry="50" fill="#333" stroke="#00ffff" stroke-width="4"/>
+            <ellipse cx="100" cy="60" rx="40" ry="45" fill="#00ffff" stroke="#000" stroke-width="3"/>
+            <ellipse cx="100" cy="55" rx="15" ry="20" fill="#000"/>
+            <ellipse cx="105" cy="50" rx="5" ry="7" fill="#fff"/>
+        </svg>
+        <div class="logo-text">NEPHYX</div>
+    </div>
+</body>
+</html>
