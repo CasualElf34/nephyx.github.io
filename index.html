@@ -610,45 +610,69 @@
     <script>
         const { createApp } = Vue;
 
-        <div class="main-content">
-            <div class="left-section">
-                <div class="info-tag">
-                    <h2 class="concert">Concert</h2>
-                </div>
-                <div class="info-tag">
-                    <h2 class="underground">Underground</h2>
-                </div>
-            </div>
-
-            <div class="center-section">
-                <div class="qr-container">
-                    <!-- Remplace "METTRE-TON-QR-CODE-ICI.png par le nom de ton fichier QR code -->
-                    <img src="qr-code.png" alt="QR Code Instagram" class="qr-code" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22280%22 height=%22280%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23000%22/%3E%3Crect x=%225%22 y=%225%22 width=%2225%22 height=%2225%22 fill=%22%23fff%22/%3E%3Crect x=%2270%22 y=%225%22 width=%2225%22 height=%2225%22 fill=%22%23fff%22/%3E%3Crect x=%225%22 y=%2270%22 width=%2225%22 height=%2225%22 fill=%22%23fff%22/%3E%3Crect x=%2210%22 y=%2210%22 width=%2215%22 height=%2215%22 fill=%22%23000%22/%3E%3Crect x=%2275%22 y=%2210%22 width=%2215%22 height=%2215%22 fill=%22%23000%22/%3E%3Crect x=%2210%22 y=%2275%22 width=%2215%22 height=%2215%22 fill=%22%23000%22/%3E%3Crect x=%2213%22 y=%2213%22 width=%229%22 height=%229%22 fill=%22%23fff%22/%3E%3Crect x=%2278%22 y=%2213%22 width=%229%22 height=%229%22 fill=%22%23fff%22/%3E%3Crect x=%2213%22 y=%2278%22 width=%229%22 height=%229%22 fill=%22%23fff%22/%3E%3Crect x=%2240%22 y=%2210%22 width=%225%22 height=%225%22 fill=%22%23fff%22/%3E%3Crect x=%2250%22 y=%2210%22 width=%225%22 height=%225%22 fill=%22%23fff%22/%3E%3Crect x=%2240%22 y=%2220%22 width=%225%22 height=%225%22 fill=%22%23fff%22/%3E%3Crect x=%2260%22 y=%2220%22 width=%225%22 height=%225%22 fill=%22%23fff%22/%3E%3Crect x=%2240%22 y=%2240%22 width=%2220%22 height=%2220%22 fill=%22%23fff%22/%3E%3Crect x=%2245%22 y=%2245%22 width=%2210%22 height=%2210%22 fill=%22%23000%22/%3E%3Crect x=%2270%22 y=%2240%22 width=%225%22 height=%225%22 fill=%22%23fff%22/%3E%3Crect x=%2280%22 y=%2240%22 width=%225%22 height=%225%22 fill=%22%23fff%22/%3E%3Crect x=%2240%22 y=%2270%22 width=%225%22 height=%225%22 fill=%22%23fff%22/%3E%3Crect x=%2250%22 y=%2280%22 width=%225%22 height=%225%22 fill=%22%23fff%22/%3E%3Crect x=%2270%22 y=%2270%22 width=%2215%22 height=%2215%22 fill=%22%23fff%22/%3E%3C/svg%3E'" />
-                </div>
-                <div class="instagram-label">INSTAGRAM</div>
-            </div>
-
-            <div class="right-section">
-                <div class="info-tag-right">
-                    <h2 class="hyperpop">Hyper pop</h2>
-                </div>
-                <div class="info-tag-right">
-                    <h2 class="bar">Bar</h2>
-                </div>
-            </div>
-        </div>
-
-        <div class="footer">
-            <a href="eye.html" target="_blank" style="display: flex; align-items: center; gap: 40px; text-decoration: none; cursor: pointer;">
-                <svg class="logo-eye" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
-                    <ellipse cx="100" cy="60" rx="90" ry="50" fill="#333" stroke="#00ffff" stroke-width="4"/>
-                    <ellipse cx="100" cy="60" rx="40" ry="45" fill="#00ffff" stroke="#000" stroke-width="3"/>
-                    <ellipse cx="100" cy="55" rx="15" ry="20" fill="#000"/>
-                    <ellipse cx="105" cy="50" rx="5" ry="7" fill="#fff"/>
-                </svg>
-                <div class="logo-text">NEPHYX</div>
-            </a>
-        </div>
-    </div>
+        createApp({
+            data() {
+                return {
+                    currentPage: 3,
+                    displayedText: '',
+                    fullText: 'Rejoins Nous',
+                    teamMembers: [
+                        { name: 'Mael', image: 'mael.jpg' },
+                        { name: 'Lucas', image: 'lucas.jpg' },
+                        { name: 'Anthéa', image: 'antho.jpg' },
+                        { name: 'Maxime', image: 'maxime.jpg' }
+                    ],
+                    leftItems: [
+                        { text: 'Concert', class: 'concert' },
+                        { text: 'Underground', class: 'underground' }
+                    ],
+                    rightItems: [
+                        { text: 'Hyper pop', class: 'hyperpop' },
+                        { text: 'Bar', class: 'bar' }
+                    ],
+                    qrCodeSrc: 'qr-code.png',
+                    instagramLabel: 'INSTAGRAM',
+                    logoText: 'NEPHYX',
+                    pageTimer: null,
+                    charIndex: 0,
+                    typingTimer: null
+                };
+            },
+            computed: {
+                displayedText() {
+                    return this.fullText.slice(0, this.charIndex).split('');
+                }
+            },
+            methods: {
+                startTyping() {
+                    this.charIndex = 0;
+                    this.typingTimer = setInterval(() => {
+                        if (this.charIndex < this.fullText.length) {
+                            this.charIndex++;
+                        } else {
+                            clearInterval(this.typingTimer);
+                        }
+                    }, 100);
+                },
+                changePage() {
+                    this.currentPage = this.currentPage === 1 ? 2 : this.currentPage === 2 ? 3 : 1;
+                    if (this.currentPage === 1) {
+                        this.startTyping();
+                    }
+                },
+                handleQrError() {
+                    this.qrCodeSrc = 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22280%22 height=%22280%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23000%22/%3E%3Crect x=%225%22 y=%225%22 width=%2225%22 height=%2225%22 fill=%22%23fff%22/%3E%3Crect x=%2270%22 y=%225%22 width=%2225%22 height=%2225%22 fill=%22%23fff%22/%3E%3Crect x=%225%22 y=%2270%22 width=%2225%22 height=%2225%22 fill=%22%23fff%22/%3E%3Crect x=%2210%22 y=%2210%22 width=%2215%22 height=%2215%22 fill=%22%23000%22/%3E%3Crect x=%2275%22 y=%2210%22 width=%2215%22 height=%2215%22 fill=%22%23000%22/%3E%3Crect x=%2210%22 y=%2275%22 width=%2215%22 height=%2215%22 fill=%22%23000%22/%3E%3Crect x=%2213%22 y=%2213%22 width=%229%22 height=%229%22 fill=%22%23fff%22/%3E%3Crect x=%2278%22 y=%2213%22 width=%229%22 height=%229%22 fill=%22%23fff%22/%3E%3Crect x=%2213%22 y=%2278%22 width=%229%22 height=%229%22 fill=%22%23fff%22/%3E%3Crect x=%2240%22 y=%2210%22 width=%225%22 height=%225%22 fill=%22%23fff%22/%3E%3Crect x=%2250%22 y=%2210%22 width=%225%22 height=%225%22 fill=%22%23fff%22/%3E%3Crect x=%2240%22 y=%2220%22 width=%225%22 height=%225%22 fill=%22%23fff%22/%3E%3Crect x=%2260%22 y=%2220%22 width=%225%22 height=%225%22 fill=%22%23fff%22/%3E%3Crect x=%2240%22 y=%2240%22 width=%2220%22 height=%2220%22 fill=%22%23fff%22/%3E%3Crect x=%2245%22 y=%2245%22 width=%2210%22 height=%2210%22 fill=%22%23000%22/%3E%3Crect x=%2270%22 y=%2240%22 width=%225%22 height=%225%22 fill=%22%23fff%22/%3E%3Crect x=%2280%22 y=%2240%22 width=%225%22 height=%225%22 fill=%22%23fff%22/%3E%3Crect x=%2240%22 y=%2270%22 width=%225%22 height=%225%22 fill=%22%23fff%22/%3E%3Crect x=%2250%22 y=%2280%22 width=%225%22 height=%225%22 fill=%22%23fff%22/%3E%3Crect x=%2270%22 y=%2270%22 width=%2215%22 height=%2215%22 fill=%22%23fff%22/%3E%3C/svg%3E';
+                }
+            },
+            mounted() {
+                this.pageTimer = setInterval(this.changePage, 8000);
+                this.startTyping();
+            },
+            beforeUnmount() {
+                if (this.pageTimer) clearInterval(this.pageTimer);
+                if (this.typingTimer) clearInterval(this.typingTimer);
+            }
+        }).mount('#app');
+    </script>
 </body>
 </html>
